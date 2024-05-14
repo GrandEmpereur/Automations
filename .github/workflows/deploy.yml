@@ -1,0 +1,33 @@
+name: Déploiement sur Google Cloud
+
+on:
+  push:
+    branches:
+      - main  # Déclenche l'action sur les pushes vers la branche principale
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        project_id: ${{ secrets.GCLOUD_PROJECT }}
+        service_account_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
+        export_default_credentials: true
+
+    - name: Build and Push Docker image
+      run: |
+        gcloud builds submit --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/my-app
+
+    - name: Deploy to Cloud Run
+      run: |
+        gcloud run deploy my-app \
+          --image gcr.io/${{ secrets.GCLOUD_PROJECT }}/my-app \
+          --region us-central1 \
+          --platform managed \
+          --allow-unauthenticated

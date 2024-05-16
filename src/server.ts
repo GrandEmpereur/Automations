@@ -3,6 +3,8 @@ import Koa from "koa";
 import path from "path";
 import cors from "@koa/cors";
 import hotel from "./routes/hotel";
+import mainRoute from "./routes/mainRoute";
+import datasetRoute from "./routes/datasetRoute";
 
 // Load environment variables from .env.development or .env
 dotenv.config({
@@ -38,6 +40,8 @@ export async function createApp(): Promise<Koa> {
     app.use(cors());
 
     app.use(hotel.routes());
+    app.use(mainRoute.routes());
+    app.use(datasetRoute.routes());
 
     /**
      * Global error handling middleware.
@@ -55,4 +59,8 @@ export async function createApp(): Promise<Koa> {
     return app;
 }
 
-main();
+if (!module.parent) {
+    main();
+}
+
+export default createApp;

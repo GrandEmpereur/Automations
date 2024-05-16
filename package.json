@@ -10,7 +10,7 @@
     "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --files ./src/server.ts",
     "start": "cross-env NODE_ENV=production node ./build/server.js",
     "build": "rimraf ./build && tsc",
-    "test": "vitest",
+    "test": "vitest run --coverage",
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {

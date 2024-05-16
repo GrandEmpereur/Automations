@@ -4,7 +4,6 @@
     "esModuleInterop": true,
     "target": "es6",
     "noImplicitAny": true,
-    "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "./build",
     "rootDir": "./src",
@@ -18,10 +17,14 @@
       ],
       "@utils/*": [
         "src/utils/*"
-      ],
+      ]
     }
   },
   "include": [
     "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
   ]
 }

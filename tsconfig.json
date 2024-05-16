@@ -12,7 +12,13 @@
     "paths": {
       "*": [
         "node_modules/*"
-      ]
+      ],
+      "@/*": [
+        "src/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
     }
   },
   "include": [

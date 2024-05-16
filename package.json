@@ -16,6 +16,7 @@
     "@vitest/coverage-istanbul": "^1.6.0",
     "@vitest/coverage-v8": "^1.6.0",
     "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
     "node-env": "^0.1.6",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",

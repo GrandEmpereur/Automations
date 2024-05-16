@@ -1,0 +1,20 @@
+name: Cerber Security Scan
+
+on: [push, pull_request]
+
+jobs:
+  cerber:
+    name: Run Cerber Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Cerber
+        run: |
+          curl -sSL https://github.com/cerberauth/vulnapi/releases/download/v0.2.2/vulnapi-linux-amd64 -o vulnapi
+          chmod +x vulnapi
+          sudo mv vulnapi /usr/local/bin/
+
+      - name: Run Cerber Security Scan
+        run: vulnapi scan -target http://localhost:3001
